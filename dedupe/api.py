@@ -9,7 +9,7 @@ import itertools
 import logging
 import multiprocessing
 import os
-import pickle
+import dill as pickle
 import sqlite3
 import tempfile
 import warnings
