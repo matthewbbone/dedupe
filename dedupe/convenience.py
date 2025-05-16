@@ -160,9 +160,11 @@ def console_label(deduper: dedupe.api.ActiveMatching) -> None:  # pragma: no cov
                 break
 
         for record in record_pair:
+            _print(f"COMPANY_NAME: {record['COMPANY_NAME']}")
             for field in fields:
-                line = f"{field} : {record[field]}"
-                _print(line)
+                if not field in ["STATE", "CITY", "COMP_RAW"]:
+                    line = f"{field} : {record[field]}"
+                    _print(line)
             _print()
         _print(f"{n_match}/10 positive, {n_distinct}/10 negative")
         _print("Do these records refer to the same thing?")
