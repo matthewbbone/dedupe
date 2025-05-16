@@ -16,7 +16,7 @@ import warnings
 from typing import TYPE_CHECKING, Literal, cast, overload
 
 import numpy
-import sklearn.linear_model
+from sklearn.tree import DecisionTreeClassifier
 import sklearn.model_selection
 
 import dedupe.blocking as blocking
@@ -1141,8 +1141,8 @@ class ActiveMatching(Matching):
         self.data_model = datamodel.DataModel(variable_definition)
         self.training_pairs = {"distinct": [], "match": []}
         self.classifier = sklearn.model_selection.GridSearchCV(
-            estimator=sklearn.linear_model.LogisticRegression(),
-            param_grid={"C": [0.00001, 0.0001, 0.001, 0.01, 0.1, 1, 10]},
+            estimator=DecisionTreeClassifier(),
+            param_grid={"min_samples_split": [2, 4, 6, 8]},
             scoring="f1",
             n_jobs=-1,
         )
