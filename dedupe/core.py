@@ -78,11 +78,12 @@ class ScoreDupes:
         features = self.featurizer(records)
         scores = self.classifier.predict_proba(features)[:, -1]
 
-        mask = scores > 0
-        if not mask.any():
-            return
-        scores = scores[mask]
-        record_id_array = numpy.array(record_ids)[mask]
+        # keeep the scores that are greater than 0
+        # mask = scores > 0
+        # if not mask.any():
+        #     return
+        # scores = scores[mask]
+        record_id_array = numpy.array(record_ids)#[mask]
 
         with self.offset.get_lock():
             fp: Scores
