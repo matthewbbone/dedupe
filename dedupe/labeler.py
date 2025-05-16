@@ -8,7 +8,7 @@ from warnings import warn
 
 import numpy
 import numpy.typing
-import sklearn.linear_model
+from sklearn.tree import DecisionTreeClassifier 
 
 import dedupe.core as core
 import dedupe.training as training
@@ -80,7 +80,7 @@ class MatchLearner(Learner):
     def __init__(self, featurizer: FeaturizerFunction, candidates: TrainingExamples):
         self._featurizer = featurizer
         self._candidates = candidates.copy()
-        self._classifier = sklearn.linear_model.LogisticRegression()
+        self._classifier = DecisionTreeClassifier()
         self._features = self._featurizer(self.candidates)
 
     def fit(self, pairs: TrainingExamples, y: LabelsLike) -> None:
