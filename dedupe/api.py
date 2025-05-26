@@ -1145,7 +1145,7 @@ class ActiveMatching(Matching):
             estimator=XGBClassifier(),
             param_grid={
                 "n_estimators": [10, 20, 100],
-                "max_features": [0.5, 0.75],
+                # "max_features": [0.5, 0.75],
                 "max_depth": [3, 6, None],
             },
             scoring="f1",
