@@ -16,7 +16,8 @@ import warnings
 from typing import TYPE_CHECKING, Literal, cast, overload
 
 import numpy
-from sklearn.ensemble import RandomForestClassifier
+# from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
 import sklearn.model_selection
 
 import dedupe.blocking as blocking
@@ -1141,7 +1142,7 @@ class ActiveMatching(Matching):
         self.data_model = datamodel.DataModel(variable_definition)
         self.training_pairs = {"distinct": [], "match": []}
         self.classifier = sklearn.model_selection.GridSearchCV(
-            estimator=RandomForestClassifier(),
+            estimator=XGBClassifier(),
             param_grid={
                 "n_estimators": [10, 20, 100],
                 "max_features": [0.5, 0.75],

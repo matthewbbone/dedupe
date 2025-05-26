@@ -8,7 +8,8 @@ from warnings import warn
 
 import numpy
 import numpy.typing
-from sklearn.ensemble import RandomForestClassifier 
+# from sklearn.ensemble import RandomForestClassifier 
+from xgboost import XGBClassifier
 
 import dedupe.core as core
 import dedupe.training as training
@@ -80,7 +81,7 @@ class MatchLearner(Learner):
     def __init__(self, featurizer: FeaturizerFunction, candidates: TrainingExamples):
         self._featurizer = featurizer
         self._candidates = candidates.copy()
-        self._classifier = RandomForestClassifier()
+        self._classifier = XGBClassifier()
         self._features = self._featurizer(self.candidates)
 
     def fit(self, pairs: TrainingExamples, y: LabelsLike) -> None:
